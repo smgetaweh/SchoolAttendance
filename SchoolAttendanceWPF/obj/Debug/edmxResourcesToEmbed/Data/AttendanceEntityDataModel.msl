@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbSchoolAttendanceModelStoreContainer" CdmEntityContainer="dbSchoolAttendanceEntities">
+    <EntitySetMapping Name="tblClassSubject">
+      <EntityTypeMapping TypeName="dbSchoolAttendanceModel.tblClassSubject">
+        <MappingFragment StoreEntitySet="tblClassSubject">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SchoolClassID" ColumnName="SchoolClassID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSchoolClass">
+      <EntityTypeMapping TypeName="dbSchoolAttendanceModel.tblSchoolClass">
+        <MappingFragment StoreEntitySet="tblSchoolClass">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="SchoolLevelID" ColumnName="SchoolLevelID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSchoolLevel">
+      <EntityTypeMapping TypeName="dbSchoolAttendanceModel.tblSchoolLevel">
+        <MappingFragment StoreEntitySet="tblSchoolLevel">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SchoolTermID" ColumnName="SchoolTermID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSchoolYear">
+      <EntityTypeMapping TypeName="dbSchoolAttendanceModel.tblSchoolYear">
+        <MappingFragment StoreEntitySet="tblSchoolYear">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="YearEndDate" ColumnName="YearEndDate" />
+          <ScalarProperty Name="YearStartDate" ColumnName="YearStartDate" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSchoolYearTerm">
+      <EntityTypeMapping TypeName="dbSchoolAttendanceModel.tblSchoolYearTerm">
+        <MappingFragment StoreEntitySet="tblSchoolYearTerm">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="EndOfTerm" ColumnName="EndOfTerm" />
+          <ScalarProperty Name="EndOfHalfTerm" ColumnName="EndOfHalfTerm" />
+          <ScalarProperty Name="StartOfHalfTerm" ColumnName="StartOfHalfTerm" />
+          <ScalarProperty Name="StartOfTerm" ColumnName="StartOfTerm" />
+          <ScalarProperty Name="AttendanceDaysRequirement" ColumnName="AttendanceDaysRequirement" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SchoolYearID" ColumnName="SchoolYearID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStudent">
+      <EntityTypeMapping TypeName="dbSchoolAttendanceModel.tblStudent">
+        <MappingFragment StoreEntitySet="tblStudent">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StudentNumber" ColumnName="StudentNumber" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSubjectAttendance">
+      <EntityTypeMapping TypeName="dbSchoolAttendanceModel.tblSubjectAttendance">
+        <MappingFragment StoreEntitySet="tblSubjectAttendance">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSubjectRegistration">
+      <EntityTypeMapping TypeName="dbSchoolAttendanceModel.tblSubjectRegistration">
+        <MappingFragment StoreEntitySet="tblSubjectRegistration">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

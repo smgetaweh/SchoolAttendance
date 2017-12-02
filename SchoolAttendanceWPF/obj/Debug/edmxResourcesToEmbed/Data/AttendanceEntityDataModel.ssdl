@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbSchoolAttendanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblClassSubject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolClassID" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <EntityType Name="tblSchoolClass">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="SchoolLevelID" Type="int" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <EntityType Name="tblSchoolLevel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolTermID" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <EntityType Name="tblSchoolYear">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YearStartDate" Type="datetime" />
+    <Property Name="YearEndDate" Type="datetime" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <EntityType Name="tblSchoolYearTerm">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolYearID" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="AttendanceDaysRequirement" Type="int" />
+    <Property Name="StartOfTerm" Type="datetime" />
+    <Property Name="StartOfHalfTerm" Type="datetime" />
+    <Property Name="EndOfHalfTerm" Type="datetime" />
+    <Property Name="EndOfTerm" Type="datetime" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <EntityType Name="tblStudent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="101" StoreGeneratedPattern="Computed" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="7" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <EntityType Name="tblSubjectAttendance">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectID" Type="int" />
+    <Property Name="StudentID" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="1" />
+    <Property Name="AttendanceDate" Type="datetime" />
+    <Property Name="Notes" Type="text" />
+  </EntityType>
+  <EntityType Name="tblSubjectRegistration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectID" Type="int" />
+    <Property Name="StudentID" Type="int" />
+  </EntityType>
+  <Association Name="FK_tblClassSubject_tblSchoolClass">
+    <End Role="tblSchoolClass" Type="Self.tblSchoolClass" Multiplicity="0..1" />
+    <End Role="tblClassSubject" Type="Self.tblClassSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSchoolClass">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblClassSubject">
+        <PropertyRef Name="SchoolClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSchoolClass_tblSchoolLevel">
+    <End Role="tblSchoolLevel" Type="Self.tblSchoolLevel" Multiplicity="0..1" />
+    <End Role="tblSchoolClass" Type="Self.tblSchoolClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSchoolLevel">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblSchoolClass">
+        <PropertyRef Name="SchoolLevelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSchoolLevel_tblSchoolYearTerm">
+    <End Role="tblSchoolYearTerm" Type="Self.tblSchoolYearTerm" Multiplicity="0..1" />
+    <End Role="tblSchoolLevel" Type="Self.tblSchoolLevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSchoolYearTerm">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblSchoolLevel">
+        <PropertyRef Name="SchoolTermID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSchoolYearTerm_tblSchoolYear">
+    <End Role="tblSchoolYear" Type="Self.tblSchoolYear" Multiplicity="0..1" />
+    <End Role="tblSchoolYearTerm" Type="Self.tblSchoolYearTerm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSchoolYear">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblSchoolYearTerm">
+        <PropertyRef Name="SchoolYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSubjectAttendance_tblClassSubject">
+    <End Role="tblClassSubject" Type="Self.tblClassSubject" Multiplicity="0..1" />
+    <End Role="tblSubjectAttendance" Type="Self.tblSubjectAttendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblClassSubject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblSubjectAttendance">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSubjectAttendance_tblStudent">
+    <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="0..1" />
+    <End Role="tblSubjectAttendance" Type="Self.tblSubjectAttendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStudent">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblSubjectAttendance">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSubjectRegistration_tblClassSubject">
+    <End Role="tblClassSubject" Type="Self.tblClassSubject" Multiplicity="0..1" />
+    <End Role="tblSubjectRegistration" Type="Self.tblSubjectRegistration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblClassSubject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblSubjectRegistration">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSubjectRegistration_tblStudent">
+    <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="0..1" />
+    <End Role="tblSubjectRegistration" Type="Self.tblSubjectRegistration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStudent">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblSubjectRegistration">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbSchoolAttendanceModelStoreContainer">
+    <EntitySet Name="tblClassSubject" EntityType="Self.tblClassSubject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSchoolClass" EntityType="Self.tblSchoolClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSchoolLevel" EntityType="Self.tblSchoolLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSchoolYear" EntityType="Self.tblSchoolYear" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSchoolYearTerm" EntityType="Self.tblSchoolYearTerm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStudent" EntityType="Self.tblStudent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubjectAttendance" EntityType="Self.tblSubjectAttendance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubjectRegistration" EntityType="Self.tblSubjectRegistration" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblClassSubject_tblSchoolClass" Association="Self.FK_tblClassSubject_tblSchoolClass">
+      <End Role="tblSchoolClass" EntitySet="tblSchoolClass" />
+      <End Role="tblClassSubject" EntitySet="tblClassSubject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSchoolClass_tblSchoolLevel" Association="Self.FK_tblSchoolClass_tblSchoolLevel">
+      <End Role="tblSchoolLevel" EntitySet="tblSchoolLevel" />
+      <End Role="tblSchoolClass" EntitySet="tblSchoolClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSchoolLevel_tblSchoolYearTerm" Association="Self.FK_tblSchoolLevel_tblSchoolYearTerm">
+      <End Role="tblSchoolYearTerm" EntitySet="tblSchoolYearTerm" />
+      <End Role="tblSchoolLevel" EntitySet="tblSchoolLevel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSchoolYearTerm_tblSchoolYear" Association="Self.FK_tblSchoolYearTerm_tblSchoolYear">
+      <End Role="tblSchoolYear" EntitySet="tblSchoolYear" />
+      <End Role="tblSchoolYearTerm" EntitySet="tblSchoolYearTerm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSubjectAttendance_tblClassSubject" Association="Self.FK_tblSubjectAttendance_tblClassSubject">
+      <End Role="tblClassSubject" EntitySet="tblClassSubject" />
+      <End Role="tblSubjectAttendance" EntitySet="tblSubjectAttendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSubjectAttendance_tblStudent" Association="Self.FK_tblSubjectAttendance_tblStudent">
+      <End Role="tblStudent" EntitySet="tblStudent" />
+      <End Role="tblSubjectAttendance" EntitySet="tblSubjectAttendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSubjectRegistration_tblClassSubject" Association="Self.FK_tblSubjectRegistration_tblClassSubject">
+      <End Role="tblClassSubject" EntitySet="tblClassSubject" />
+      <End Role="tblSubjectRegistration" EntitySet="tblSubjectRegistration" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSubjectRegistration_tblStudent" Association="Self.FK_tblSubjectRegistration_tblStudent">
+      <End Role="tblStudent" EntitySet="tblStudent" />
+      <End Role="tblSubjectRegistration" EntitySet="tblSubjectRegistration" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,5 @@
+D:\Software Developements\Projects 2017\Dad\SchoolAttendance\AttendanceModels\bin\Debug\AttendanceModels.dll
+D:\Software Developements\Projects 2017\Dad\SchoolAttendance\AttendanceModels\bin\Debug\AttendanceModels.pdb
+D:\Software Developements\Projects 2017\Dad\SchoolAttendance\AttendanceModels\obj\Debug\AttendanceModels.dll
+D:\Software Developements\Projects 2017\Dad\SchoolAttendance\AttendanceModels\obj\Debug\AttendanceModels.pdb
+D:\Software Developements\Projects 2017\Dad\SchoolAttendance\AttendanceModels\obj\Debug\AttendanceModels.csprojResolveAssemblyReference.cache
